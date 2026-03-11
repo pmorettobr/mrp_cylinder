@@ -1,0 +1,16 @@
+<odoo>
+
+<menuitem
+    id="menu_cylinder_root"
+    name="Cilindros"
+    parent="mrp.menu_mrp_root"
+    sequence="30"/>
+
+<menuitem
+    id="menu_cylinder_tracking"
+    name="Rastreamento de Produção"
+    parent="menu_cylinder_root"
+    action="mrp.mrp_workorder_action"
+    sequence="1"/>
+
+</odoo>
