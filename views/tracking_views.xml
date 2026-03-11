@@ -1,22 +1,18 @@
 <odoo>
-
-<record id="view_cylinder_tracking_tree" model="ir.ui.view">
-    <field name="name">cylinder.tracking.tree</field>
-    <field name="model">mrp.workorder</field>
-    <field name="arch" type="xml">
-
-        <tree string="Rastreamento da Produção">
-
-            <field name="workcenter_id" string="Máquina"/>
-            <field name="production_id" string="Ordem"/>
-            <field name="serial_number" string="Serial"/>
-            <field name="piece_name" string="Peça"/>
-            <field name="process_name" string="Processo"/>
-            <field name="state" string="Status"/>
-
-        </tree>
-
-    </field>
-</record>
-
+    <record id="view_cylinder_tracking_tree" model="ir.ui.view">
+        <field name="name">cylinder.tracking.tree</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_tree_editable"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="decoration-info">state == 'pending'</attribute>
+                <attribute name="decoration-success">state == 'done'</attribute>
+            </xpath>
+            <xpath expr="//field[@name='workcenter_id']" position="after">
+                <field name="serial_number" string="Serial" optional="show"/>
+                <field name="piece_name" string="Peça" optional="show"/>
+                <field name="process_name" string="Processo" optional="show"/>
+            </xpath>
+        </field>
+    </record>
 </odoo>
