@@ -1,17 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_mrp_workorder_user,mrp.workorder.user,model_mrp_workorder,mrp.group_mrp_user,1,1,1,0
-access_mrp_workorder_manager,mrp.workorder.manager,model_mrp_workorder,mrp.group_mrp_manager,1,1,1,1
-access_mrp_workcenter_user,mrp.workcenter.user,model_mrp_workcenter,mrp.group_mrp_user,1,0,0,0
-access_mrp_workcenter_manager,mrp.workcenter.manager,model_mrp_workcenter,mrp.group_mrp_manager,1,1,1,1
-access_mrp_bom_user,mrp.bom.user,model_mrp_bom,mrp.group_mrp_user,1,0,0,0
-access_mrp_bom_manager,mrp.bom.manager,model_mrp_bom,mrp.group_mrp_manager,1,1,1,1
-access_mrp_bom_line_user,mrp.bom.line.user,model_mrp_bom_line,mrp.group_mrp_user,1,0,0,0
-access_mrp_bom_line_manager,mrp.bom.line.manager,model_mrp_bom_line,mrp.group_mrp_manager,1,1,1,1
-access_mrp_production_user,mrp.production.user,model_mrp_production,mrp.group_mrp_user,1,1,1,0
-access_mrp_production_manager,mrp.production.manager,model_mrp_production,mrp.group_mrp_manager,1,1,1,1
-access_stock_lot_user,stock.lot.user,model_stock_lot,stock.group_stock_user,1,0,0,0
-access_stock_lot_manager,stock.lot.manager,model_stock_lot,stock.group_stock_manager,1,1,1,1
-access_product_product_user,product.product.user,model_product_product,stock.group_stock_user,1,0,0,0
-access_product_product_manager,product.product.manager,model_product_product,stock.group_stock_manager,1,1,1,1
-access_product_template_user,product.template.user,model_product_template,stock.group_stock_user,1,0,0,0
-access_product_template_manager,product.template.manager,model_product_template,stock.group_stock_manager,1,1,1,1
+# access_mrp_workorder_cylinder,mrp.workorder.cylinder,model_mrp_workorder,mrp.group_mrp_user,1,1,1,0
