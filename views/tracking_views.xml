@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- ✅ View Tree: Herda da view correta do MRP no Odoo 16 Community -->
+    <!-- ✅ Tree View: Herda da view CORRETA do Odoo 16 Community -->
     <record id="view_cylinder_tracking_tree" model="ir.ui.view">
         <field name="name">mrp.workorder.cylinder.tree</field>
         <field name="model">mrp.workorder</field>
-        <field name="inherit_id" ref="mrp.mrp_workorder_tree_view"/>
+        <!-- ✅ ID CORRETO: mrp_production_workorder_tree_view -->
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_tree_view"/>
         <field name="arch" type="xml">
-            <!-- ✅ Adiciona campos após o campo 'name' (mais estável que workcenter_id) -->
+            <!-- ✅ XPath mais seguro: adiciona após o campo 'name' -->
             <xpath expr="//field[@name='name']" position="after">
                 <field name="serial_number" string="Serial" optional="show"/>
                 <field name="piece_name" string="Peça" optional="show"/>
                 <field name="process_name" string="Processo" optional="show"/>
             </xpath>
             
-            <!-- ✅ Adiciona decoração de status na tree (opcional) -->
+            <!-- ✅ Decorações de status (opcional) -->
             <xpath expr="//tree" position="attributes">
                 <attribute name="decoration-info">state == 'pending'</attribute>
                 <attribute name="decoration-success">state == 'done'</attribute>
@@ -22,13 +23,13 @@
         </field>
     </record>
 
-    <!-- ✅ View Form: Opcional, para editar os campos no formulário -->
+    <!-- ✅ Form View: Opcional para edição -->
     <record id="view_cylinder_tracking_form" model="ir.ui.view">
         <field name="name">mrp.workorder.cylinder.form</field>
         <field name="model">mrp.workorder</field>
-        <field name="inherit_id" ref="mrp.mrp_workorder_view_form"/>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_form_view_inherit"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='name']" position="after">
+            <xpath expr="//field[@name='production_id']" position="after">
                 <field name="serial_number" readonly="1"/>
                 <field name="piece_name" readonly="1"/>
                 <field name="process_name" readonly="1"/>
@@ -36,11 +37,11 @@
         </field>
     </record>
 
-    <!-- ✅ Filtro para busca por Serial/Peça -->
+    <!-- ✅ Search View: Filtros adicionais -->
     <record id="view_cylinder_tracking_search" model="ir.ui.view">
         <field name="name">mrp.workorder.cylinder.search</field>
         <field name="model">mrp.workorder</field>
-        <field name="inherit_id" ref="mrp.view_mrp_workorder_filter"/>
+        <field name="inherit_id" ref="mrp.view_mrp_production_workorder_form_view_filter"/>
         <field name="arch" type="xml">
             <xpath expr="//search" position="inside">
                 <field name="serial_number"/>
@@ -48,5 +49,3 @@
                 <field name="process_name"/>
             </xpath>
         </field>
-    </record>
-</odoo>
