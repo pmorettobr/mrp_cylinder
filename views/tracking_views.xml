@@ -1,64 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- =========================================================== -->
-    <!-- Tree View: Lista de Ordens de Trabalho com campos personalizados -->
-    <!-- =========================================================== -->
+    <!-- Tree View: Herda da view editável (prioridade mais alta) -->
     <record id="view_cylinder_tracking_tree" model="ir.ui.view">
         <field name="name">mrp.workorder.cylinder.tree</field>
         <field name="model">mrp.workorder</field>
-        <field name="inherit_id" ref="mrp.mrp_production_workorder_tree_view"/>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_tree_editable_view"/>
         <field name="arch" type="xml">
-            
-            <!-- Adiciona campos personalizados após o campo 'name' -->
             <xpath expr="//field[@name='name']" position="after">
                 <field name="serial_number" string="Serial" optional="show"/>
                 <field name="piece_name" string="Peça" optional="show"/>
                 <field name="process_name" string="Processo" optional="show"/>
             </xpath>
-            
-            <!-- Decorações visuais para status da ordem -->
-            <xpath expr="//tree" position="attributes">
-                <attribute name="decoration-info">state == 'pending'</attribute>
-                <attribute name="decoration-success">state == 'done'</attribute>
-                <attribute name="decoration-danger">state == 'cancel'</attribute>
-            </xpath>
-            
         </field>
     </record>
 
-    <!-- =========================================================== -->
-    <!-- Form View: Formulário de Ordem de Trabalho -->
-    <!-- =========================================================== -->
+    <!-- Form View: Opcional -->
     <record id="view_cylinder_tracking_form" model="ir.ui.view">
         <field name="name">mrp.workorder.cylinder.form</field>
         <field name="model">mrp.workorder</field>
-        <field name="inherit_id" ref="mrp.mrp_production_workorder_form_view_inherit"/>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_form_view"/>
         <field name="arch" type="xml">
-            
             <xpath expr="//field[@name='production_id']" position="after">
                 <field name="serial_number" readonly="1"/>
                 <field name="piece_name" readonly="1"/>
                 <field name="process_name" readonly="1"/>
             </xpath>
-            
         </field>
     </record>
 
-    <!-- =========================================================== -->
-    <!-- Search View: Filtros de busca -->
-    <!-- =========================================================== -->
+    <!-- Search View: Opcional -->
     <record id="view_cylinder_tracking_search" model="ir.ui.view">
         <field name="name">mrp.workorder.cylinder.search</field>
         <field name="model">mrp.workorder</field>
-        <field name="inherit_id" ref="mrp.view_mrp_production_workorder_filter"/>
+        <field name="inherit_id" ref="mrp.view_mrp_workorder_filter"/>
         <field name="arch" type="xml">
-            
             <xpath expr="//search" position="inside">
                 <field name="serial_number"/>
                 <field name="piece_name"/>
                 <field name="process_name"/>
             </xpath>
-            
         </field>
     </record>
 </odoo>
