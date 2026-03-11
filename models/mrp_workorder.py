@@ -3,10 +3,12 @@ from odoo import models, fields, api
 class MrpWorkorder(models.Model):
     _inherit = 'mrp.workorder'
 
+    # ✅ CORREÇÃO: Usar lot_producing_id ao invés de lot_id
     serial_number = fields.Char(
         string="Serial",
-        related="production_id.lot_id.name",  # ✅ Campo correto para Odoo 16 Community
-        store=True
+        related="production_id.lot_producing_id.name",  # ← Campo correto para Odoo 16
+        store=True,
+        readonly=True
     )
 
     piece_name = fields.Char(
@@ -25,7 +27,7 @@ class MrpWorkorder(models.Model):
     def _compute_piece(self):
         for rec in self:
             if rec.name and '-' in rec.name:
-                parts = rec.name.split('-', 1)  # ✅ Split apenas na primeira ocorrência
+                parts = rec.name.split('-', 1)
                 rec.piece_name = parts[0].strip()
                 rec.process_name = parts[1].strip() if len(parts) > 1 else ''
             else:
