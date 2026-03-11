@@ -1,16 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <!-- =========================================================== -->
+    <!-- MENU ROOT: Menu principal do módulo -->
+    <!-- =========================================================== -->
+    <menuitem id="menu_cylinder_root" 
+              name="Cilindros" 
+              parent="mrp.menu_mrp_root" 
+              sequence="100"/>
 
-<menuitem
-    id="menu_cylinder_root"
-    name="Cilindros"
-    parent="mrp.menu_mrp_root"
-    sequence="30"/>
+    <!-- =========================================================== -->
+    <!-- ACTION: Ação da window para Ordens de Trabalho -->
+    <!-- =========================================================== -->
+    <!-- 
+        ✅ Use o ID descoberto no shell do Odoo
+        Se não funcionar, crie uma ação personalizada abaixo
+    -->
+    
+    <!-- Opção A: Usar action existente do MRP (recomendado) -->
+    <record id="action_cylinder_tracking" model="ir.actions.act_window">
+        <field name="name">Rastreamento de Produção</field>
+        <field name="res_model">mrp.workorder</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_cylinder_tracking_tree"/>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Nenhuma ordem de trabalho encontrada
+            </p>
+        </field>
+    </record>
 
-<menuitem
-    id="menu_cylinder_tracking"
-    name="Rastreamento de Produção"
-    parent="menu_cylinder_root"
-    action="mrp.mrp_workorder_action"
-    sequence="1"/>
+    <!-- =========================================================== -->
+    <!-- MENU ITEM: Item de menu que chama a action -->
+    <!-- =========================================================== -->
+    <menuitem id="menu_cylinder_tracking" 
+              name="Rastreamento de Produção" 
+              parent="menu_cylinder_root" 
+              action="action_cylinder_tracking" 
+              sequence="1"/>
 
+    <!-- =========================================================== -->
+    <!-- MENU ITEM OPCIONAL: Relatórios -->
+    <!-- =========================================================== -->
+    <!--
+    <menuitem id="menu_cylinder_reports" 
+              name="Relatórios" 
+              parent="menu_cylinder_root" 
+              sequence="2"/>
+    -->
 </odoo>
