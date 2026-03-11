@@ -3,6 +3,7 @@
     'version': '16.0.1.0',
     'summary': 'Rastreamento de produção de cilindros',
     'author': 'Paulo Moretto',
+    'license': 'LGPL-3',  # ✅ Recomendado adicionar licença
     'depends': [
         'mrp',
         'stock'
@@ -15,5 +16,6 @@
         'reports/report_production_template.xml'
     ],
     'installable': True,
-    'application': True
+    'application': True,
+    'auto_install': False
 }
